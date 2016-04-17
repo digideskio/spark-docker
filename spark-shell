@@ -1,0 +1,8 @@
+#!/bin/bash -e
+
+# usage:
+# export PROXY_SERVER=some.proxy.server
+# export PROXY_PORT=1234
+# ./spark-shell --packages datastax:spark-cassandra-connector:1.6.0-M2-s_2.10
+
+docker run -it --net=host --name=spark parzonka/spark /opt/spark/bin/spark-shell --conf "spark.driver.extraJavaOptions=-Dhttp.proxyHost=$PROXY_SERVER -Dhttp.proxyPort=$PROXY_PORT -Dhttps.proxyHost=$PROXY_SERVER -Dhttps.proxyPort=$PROXY_PORT" "$@"
