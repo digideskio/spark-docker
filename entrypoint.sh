@@ -1,5 +1,17 @@
 #!/bin/bash -e
 
+# fix ports
+cat <<EOT > /opt/spark/conf/spark-defaults.conf
+spark.driver.port			7001
+spark.fileserver.port		7002
+spark.broadcast.port		7003
+spark.replClassServer.port	7004
+spark.blockManager.port 	7005
+spark.executor.port 		7006
+spark.ui.port 				4040
+spark.broadcast.factory 	org.apache.spark.broadcast.HttpBroadcastFactory
+EOT
+
 if [ -z $MASTER_IP ]; then
 	echo "no master ip defined"
 else
