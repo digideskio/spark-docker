@@ -1,5 +1,9 @@
 ## Example Usage
 
-Start spark-shell with some package
+Start master
 
-	docker run -it parzonka/spark bin/spark-shell --packages <somePackage>
+	docker run -dit --net=host --name=spark -e MASTER_IP=<some_host> -e ROLE=master parzonka/spark
+
+Start slave
+
+	docker run -dit --net=host --name=spark -e MASTER_IP=<some_host> -e ROLE=slave parzonka/spark
