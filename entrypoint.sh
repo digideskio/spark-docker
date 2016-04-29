@@ -15,9 +15,15 @@ spark.worker.cleanup.interval	600
 spark.worker.cleanup.appDataTtl	12000
 EOT
 
-if [ -z $MASTER_IP ]; then
-	echo "no master ip defined"
-else
+if [ ! -z $LOCAL_IP ]; then
+	export SPARK_LOCAL_IP=$LOCAL_IP
+fi
+
+if [ ! -z $PUBLIC_DNS ]; then
+	export SPARK_PUBLIC_DNS=$PUBLIC_DNS
+fi
+
+if [ ! -z $MASTER_IP ]; then
 	if [ "$ROLE" = "master" ]; then
 		echo "starting master at $MASTER_IP" 
 		/opt/spark/sbin/start-master.sh -h $MASTER_IP
