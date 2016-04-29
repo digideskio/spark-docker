@@ -10,6 +10,9 @@ spark.blockManager.port 	7005
 spark.executor.port 		7006
 spark.ui.port 				4040
 spark.broadcast.factory 	org.apache.spark.broadcast.HttpBroadcastFactory
+spark.worker.cleanup.enabled	true
+spark.worker.cleanup.interval	600
+spark.worker.cleanup.appDataTtl	12000
 EOT
 
 if [ -z $MASTER_IP ]; then
