@@ -25,12 +25,12 @@ fi
 
 if [ ! -z $MASTER_IP ]; then
 	if [ "$ROLE" = "master" ]; then
-		echo "starting master at $MASTER_IP" 
-		/opt/spark/sbin/start-master.sh -h $MASTER_IP
+		echo "Starting master at $MASTER_IP with options [$SPARK_OPTIONS]" 
+		/opt/spark/sbin/start-master.sh -h $SPARK_OPTIONS $MASTER_IP
 	else
 		MASTER_URL="spark://$MASTER_IP:7077"
-		echo "starting slave connecting to $MASTER_URL" 
-		/opt/spark/sbin/start-slave.sh $MASTER_URL
+		echo "Starting slave connecting to $MASTER_URL with options [$SPARK_OPTIONS]" 
+		/opt/spark/sbin/start-slave.sh $SPARK_OPTIONS $MASTER_URL
 	fi
 fi
 
